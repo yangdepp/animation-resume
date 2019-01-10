@@ -102,71 +102,91 @@
 
 
 // 改写上面的例子
-// function getCallPromise() {
-//   return new Promise((resolve, reject) => {
-//     let a = 10,
-//       b = 10;
-//     console.log('三秒后计算c1')
-//     setTimeout(() => {
-//       let c = a + b;
-//       if (c > 19) {
-//         console.log('成功计算c')
-//         resolve(c)
-//       } else {
-//         console.log('失败计算c')
-//         reject(c)
-//       }
-//     }, 3000)
-//   })
-// }
-
-// getCallPromise().then((c) => {
-//   console.log(c + 1)
-//   return c + 1
-// }).catch((c) => {
-//   console.log(c - 1)
-//   return c - 1
-// }).then((c) => {
-//   console.log(c + 1)
-// }).catch((c) => {
-//   console.log(c - 1)
-// })
-
-// 接下来是Promise.all的例子
-let fn1 = function fn1() {
+function getCallPromise() {
   return new Promise((resolve, reject) => {
+    let a = 10,
+      b = 10;
+    console.log('三秒后计算c1')
     setTimeout(() => {
-      console.log('3秒')
-      resolve(1)
+      let c = a + b;
+      if (c > 19) {
+        console.log('成功计算c')
+        resolve(c)
+      } else {
+        console.log('失败计算c')
+        reject(c)
+      }
     }, 3000)
   })
 }
-let fn2 = function fn2() {
+
+function getCallPromise2(c) {
   return new Promise((resolve, reject) => {
+    console.log('三秒后计算c1')
     setTimeout(() => {
-      console.log('4秒')
-      resolve(2)
-    }, 4000)
+      c = c + 1;
+      if (c > 25) {
+        console.log('成功计算c')
+        resolve(c)
+      } else {
+        console.log('失败计算c')
+        reject(c)
+      }
+    }, 3000)
   })
 }
-let fn3 = function fn3() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log('5秒')
-      resolve(3)
-    }, 5000)
+
+getCallPromise().then((c) => {
+  console.log(c + 1)
+  return c + 1 // 此处对c处理，传递给下一个then
+}).catch((c) => {
+  console.log(c - 1)
+  return c - 1
+}).then((c) => {
+  getCallPromise2(c).then((c) => {
+    console.log(c)
+  }).catch((c) =>{
+    console.log(c-1)
   })
-}
-// all的例子
-Promise.all([fn1(), fn2(), fn3()]).then((data) => {
-  let fn1 = data[0]
-  let fn2 = data[1]
-  let fn3 = data[2]
-  console.log(fn1 + fn2 + fn3);
+}).catch((c) => {
+  console.log(c - 1)
 })
-// race的例子，
-// race只要有一个成功，就返回
-Promise.race([fn1(), fn2(), fn3()]).then((data) => {
-  let fn1 = data
-  console.log(fn1);
-})
+
+// 接下来是Promise.all的例子
+// let fn1 = function fn1() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log('3秒')
+//       resolve(1)
+//     }, 3000)
+//   })
+// }
+// let fn2 = function fn2() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log('4秒')
+//       resolve(2)
+//     }, 4000)
+//   })
+// }
+// let fn3 = function fn3() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log('5秒')
+//       resolve(3)
+//     }, 5000)
+//   })
+// }
+// // all的例子
+// Promise.all([fn1(), fn2(), fn3()]).then((data) => {
+//   let fn1 = data[0]
+//   let fn2 = data[1]
+//   let fn3 = data[2]
+//   console.log(fn1 + fn2 + fn3);
+// })
+// // race的例子，
+// // race只要有一个成功，就返回
+// Promise.race([fn1(), fn2(), fn3()]).then((data) => {
+//   let fn1 = data
+//   console.log(fn1);
+// })
