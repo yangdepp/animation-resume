@@ -28,9 +28,8 @@ function writeMarkdown(markdown, fn){
 }
 
 var css1 = `/* 
- * 面试官你好，我是XXX
- * 只用文字作做我介绍太单调了
- * 我就用代码来介绍吧
+ * 你好！我是XXX
+ * 我用代码写了一份简历
  * 首先准备一些样式
  */
 
@@ -105,47 +104,6 @@ XXX 学校毕业
 - Email xxxxxxxx
 - 手机 xxxxxxx
 
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
-
-# 联系方式
-
-- QQ xxxxxxxx
-- Email xxxxxxxx
-- 手机 xxxxxxx
 `
 let css3 = `
 /*
