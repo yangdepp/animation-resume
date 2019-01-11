@@ -24,7 +24,7 @@ function likeClass(a, b) {
   this.a = a;
   this.b = b;
   this.getA = function(){
-    rerturn this.a + 1;
+    return this.a + 1;
   }
   this.getB = function(){
     return this.b + 1;
