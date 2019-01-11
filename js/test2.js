@@ -20,10 +20,24 @@
 //JSON 和 JavaScript 的区别有哪些？
 
 
-function fn(){
-  console.log(this)
+function likeClass(a, b) {
+  this.a = a;
+  this.b = b;
+  this.getA = function(){
+    rerturn this.a + 1;
+  }
+  this.getB = function(){
+    return this.b + 1;
+  }
 }
-var Fn = fn.bind(Object)
-var instance = new Fn()
-console.log(instance)
+
+likeClass.prototype.say = function () {
+  console.log('hello,world.')
+}
+
+var t = new likeClass(1,2);
+console.log(t.a);
+console.log(t.b)
+t.getA();
+t.getB();
 
